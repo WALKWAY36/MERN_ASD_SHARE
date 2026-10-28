@@ -1,0 +1,394 @@
+.disk {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.disk__btns {
+  display: flex;
+}
+
+.disk__create {
+  margin-left: 10px;
+}
+
+.disk__upload-input {
+  display: none;
+}
+
+.disk__write-text-label,
+.disk__upload-label {
+  display: inline-block;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  background-color: #125DD6;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.disk__write-text-label:hover,
+.disk__upload-label:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.disk__select {
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  background-color: #125DD6;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.progress-bar-container {
+  top: 90px;
+  position: absolute;
+  margin-left: 400px;
+  width: 10%;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar {
+  height: 20px;
+  width: 0;
+  background-color: #76c7c0;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+/* Добавьте эти стили в ваш disk.css */
+
+.disk__refresh-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.disk__refresh-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.disk__refresh-btn svg {
+  fill: #333;
+}
+
+.disk__refresh-btn:active {
+  transform: scale(0.95);
+}
+
+.disk__option {
+  color: #ffffff;
+}
+
+.disk__list,
+.disk__plate {
+  height: 20px;
+  width: 20px;
+  border: none;
+  cursor: pointer;
+  background: no-repeat center center;
+  background-size: contain;
+  margin: 0 10px;
+}
+
+.disk__list {
+  background-image: url("../../assets/img/list.svg");
+}
+
+.disk__plate {
+  background-image: url("../../assets/img/plate.svg");
+}
+
+.drop-area {
+  width: 100%;
+  height: calc(10vh);
+  margin: 20px;
+  border: dashed #566885 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+}
+
+.popup {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup__close {
+  padding: 3px;
+  border: #368080;
+  background-color: #368080;
+  color: #000712;
+}
+
+.popup__close:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.popup__content {
+  width: 400px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background-color: #000712;
+}
+
+.popup__create {
+  padding: 3px;
+  border: #368080;
+  background-color: #368080;
+  color: #000712;
+  align-self: flex-end;
+}
+
+.popup__create:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.popup__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup input {
+  margin: 20px 0px;
+}
+
+.popup-links {
+  width: 100%;
+  height: 100vh;
+  background: rgba(214, 184, 184, 0.5);
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-links__content {
+  width: 400px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background-color: #000712;
+}
+
+.popup-links__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.loader {
+  display: flex;
+  margin-left: 40vw;
+  align-items: center;
+  height: calc(50vh);
+}
+
+.lds-roller {
+  /* change color here */
+  color: #566885;
+}
+
+.lds-roller,
+.lds-roller div,
+.lds-roller div:after {
+  box-sizing: border-box;
+}
+
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7.2px;
+  height: 7.2px;
+  border-radius: 50%;
+  background: currentColor;
+  margin: -3.6px 0 0 -3.6px;
+}
+
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+
+.lds-roller div:nth-child(1):after {
+  top: 62.62742px;
+  left: 62.62742px;
+}
+
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+
+.lds-roller div:nth-child(2):after {
+  top: 67.71281px;
+  left: 56px;
+}
+
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+
+.lds-roller div:nth-child(3):after {
+  top: 70.90963px;
+  left: 48.28221px;
+}
+
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+
+.lds-roller div:nth-child(5):after {
+  top: 70.90963px;
+  left: 31.71779px;
+}
+
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+
+.lds-roller div:nth-child(6):after {
+  top: 67.71281px;
+  left: 24px;
+}
+
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+
+.lds-roller div:nth-child(7):after {
+  top: 62.62742px;
+  left: 17.37258px;
+}
+
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12.28719px;
+}
+
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.back-icon {
+  fill: #368080;
+  cursor: pointer;
+}
+
+.back-icon:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+  fill: #566885;
+}
+
+.create-dir-icon {
+  cursor: pointer;
+}
+
+.create-dir-icon #primary {
+  fill: "#000712";
+  stroke: #368080;
+  stroke-width: 2;
+}
+
+.create-dir-icon #second {
+  stroke: #368080;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.create-dir-icon:hover #primary,
+.create-dir-icon:hover #second {
+  stroke: #566885;
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.create-link-icon {
+  cursor: pointer;
+  fill: #368080;
+}
+
+.create-link-icon:hover {
+  fill: #566885;
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 500px) {
+
+  .disk__write-text-label,
+  .disk__upload-label {
+    margin-left: 5px;
+    font-size: 10px;
+  }
+
+  .disk__select {
+    font-size: 10px;
+  }
+}

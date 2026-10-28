@@ -1,0 +1,27 @@
+input {
+  border: none;
+  border-bottom: #125DD6 solid 3px;
+  background: transparent;
+  width: 80%;
+  height: 40px;
+}
+::-webkit-input-placeholder {
+  /* Chrome */
+  color: #125DD6;
+  font-weight: 700;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #125DD6;
+  font-weight: 700;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #125DD6;
+  font-weight: 700;
+}
+:-moz-placeholder {
+  /* Firefox 4 - 18 */
+  color: #125DD6;
+  font-weight: 700;
+}

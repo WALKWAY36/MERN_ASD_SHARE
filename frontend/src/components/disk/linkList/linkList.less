@@ -1,0 +1,20 @@
+.linklist {
+    margin: 20px 0;
+
+    &__header {
+        display: grid;
+        grid-template-columns: 1fr 4fr repeat(4, 1fr);
+    }
+
+    &__name {
+        grid-column-start: 2;
+    }
+
+    &__link {
+        grid-column-start: 6;
+        justify-self: center;
+    }
+
+}
+
+

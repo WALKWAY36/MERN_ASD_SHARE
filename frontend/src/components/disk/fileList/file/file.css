@@ -1,0 +1,396 @@
+.file {
+  margin: 30px 0;
+  border-bottom: solid 2px #368080;
+  display: grid;
+  grid-template-columns: 1fr 5fr repeat(5, 1fr);
+  align-items: center;
+  transition: transform 0.3s linear;
+  position: relative;
+}
+
+.file:hover {
+  transform: scale(1.02);
+}
+
+.file__img {
+  justify-self: center;
+}
+
+.file__name {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.file__date {
+  grid-column-start: 5;
+  justify-self: center;
+}
+
+.file__size {
+  grid-column-start: 7;
+  justify-self: center;
+}
+
+/* ===== КНОПКИ ===== */
+.file__btn {
+  display: none;
+  border: none;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.file__btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Смотреть */
+.file__btn.file__watch {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.file__btn.file__watch:hover {
+  background: linear-gradient(135deg, #45a049, #388E3C);
+}
+
+/* Анализировать */
+.file__btn.file__analyze {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.file__btn.file__analyze:hover {
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+}
+
+/* Аналитика */
+.file__btn.file__analytics {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.file__btn.file__analytics:hover {
+  background: linear-gradient(135deg, #e084ea, #e4455a);
+}
+
+/* Повторить */
+.file__btn.file__retry {
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  color: #333;
+}
+
+.file__btn.file__retry:hover {
+  background: linear-gradient(135deg, #ffb300, #f57c00);
+}
+
+/* В процессе */
+.file__btn.file__analyzing {
+  background: #6c757d;
+  cursor: not-allowed;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Скачать */
+.file__btn.file__download {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+}
+
+.file__btn.file__download:hover {
+  background: linear-gradient(135deg, #1E88E5, #1565C0);
+}
+
+/* Удалить */
+.file__btn.file__delete {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+}
+
+.file__btn.file__delete:hover {
+  background: linear-gradient(135deg, #e53935, #c62828);
+}
+
+/* Открыть */
+.file__btn.file__open {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.file__btn.file__open:hover {
+  background: linear-gradient(135deg, #5a6fd8, #6a4190);
+}
+
+/* ===== ПОКАЗ КНОПОК ПРИ НАВЕДЕНИИ ===== */
+.file:hover .file__date {
+  grid-column-start: 3;
+}
+
+.file:hover .file__size {
+  grid-column-start: 5;
+}
+
+.file:hover .file__download,
+.file:hover .file__watch,
+.file:hover .file__analyze,
+.file:hover .file__analytics,
+.file:hover .file__retry {
+  cursor: pointer;
+  grid-column-start: 6;
+  display: block;
+}
+
+.file:hover .file__delete {
+  cursor: pointer;
+  grid-column-start: 7;
+  display: block;
+}
+
+.file:hover .file__open {
+  cursor: pointer;
+  grid-column-start: 7;
+  display: block;
+}
+
+/* ===== ПРОГРЕСС-БАР ===== */
+.file__progress-container {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #e9ecef;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+
+.file__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+  background-size: 200% 100%;
+  animation: progressShine 2s linear infinite;
+  transition: width 0.5s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+@keyframes progressShine {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.file__progress-text {
+  font-size: 12px;
+  color: #667eea;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+/* ===== ИНДИКАТОР АНАЛИЗА ===== */
+.file__analysis-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.file__analysis-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.file__analysis-badge.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.file__analysis-badge.analyzing {
+  background: #fff3cd;
+  color: #856404;
+  animation: pulse 1.5s infinite;
+}
+
+.file__analysis-badge.failed {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* ===== СПИННЕР ===== */
+.spinner-border-sm {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #ffffff;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== УВЕДОМЛЕНИЕ ===== */
+.file__analysis-notice {
+  padding: 6px 16px;
+  font-size: 12px;
+  color: #856404;
+  background: #fff3cd;
+  border-left: 3px solid #ffc107;
+  border-radius: 0 4px 4px 0;
+  margin-top: 4px;
+}
+
+/* ===== PLATE VIEW ===== */
+.file-plate {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.file-plate:hover {
+  background: #f8f9fa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.file-plate__img {
+  height: 100px;
+  width: 100px;
+}
+
+.file-plate__name {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 4px;
+  word-break: break-word;
+}
+
+.file-plate__btns {
+  display: none;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.file-plate:hover .file-plate__btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.file-plate__btn {
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.file-plate__btn:hover {
+  transform: scale(1.05);
+}
+
+.file-plate__watch {
+  background: #4CAF50;
+}
+
+.file-plate__analyze {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.file-plate__analytics {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.file-plate__download {
+  background: #2196F3;
+}
+
+.file-plate__delete {
+  background: #f44336;
+}
+
+/* Прогресс-бар для плитки */
+.file-plate__progress {
+  width: 100%;
+  padding: 0 8px;
+  margin-top: 4px;
+}
+
+.file-plate__progress .progress {
+  height: 4px;
+  background: #e9ecef;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.file-plate__progress .progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+  .file {
+    grid-template-columns: 1fr 3fr repeat(3, 1fr);
+  }
+
+  .file:hover .file__download,
+  .file:hover .file__watch,
+  .file:hover .file__analyze,
+  .file:hover .file__analytics,
+  .file:hover .file__retry {
+    grid-column-start: 5;
+  }
+
+  .file:hover .file__delete,
+  .file:hover .file__open {
+    grid-column-start: 6;
+  }
+}
+
+@media (max-width: 500px) {
+  .file {
+    grid-template-columns: 1fr 2fr repeat(2, 1fr);
+  }
+
+  .file:hover .file__download {
+    grid-column-start: 4;
+  }
+
+  .file:hover .file__delete,
+  .file:hover .file__open {
+    grid-column-start: 5;
+  }
+}

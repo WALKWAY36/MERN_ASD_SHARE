@@ -1,0 +1,21 @@
+# Logs
+logs
+*.log
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variable files
+.env
+.env.*
+!.env.example
+
+node_modules
+files/
+.env
+static
+dev.sqlite
+privacy.html
+build/

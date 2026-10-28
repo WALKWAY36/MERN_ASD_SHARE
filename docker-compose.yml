@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - bff
+    networks:
+      - app-network
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+
+  bff:
+    build: 
+      context: ./bff
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - SERVER_PORT=5000
+      - JWT_ACCESS_SECRET=jwt-secret-access-token
+      - JWT_REFRESH_SECRET=jwt-secret-refresh-token
+      - FILE_PATH=/app/files
+      - STATIC_PATH=/app/static
+      - DB_PATH=/app/data/dev.sqlite
+      - ML_API_URL=http://ml-service:5010
+      - DATASET_DIR=/app/dataset
+      - SUPERUSER_LOGIN=admin@mail.ru
+      - SUPREUSER_PASS=!oRka12*
+    volumes:
+      - shared-files:/app/files
+      - bff-data:/app/data
+      - shared-dataset:/app/dataset
+      - bff-static:/app/static
+    depends_on:
+      - ml-service
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  ml-service:
+    build: 
+      context: ./ml-service
+      dockerfile: Dockerfile
+    ports:
+      - "5010:5010"
+    environment:
+      - ML_DIR_PATH=/app
+      - FLASK_ENV=production
+    volumes:
+      # Named volumes для данных (сохраняются между перезапусками)
+      - shared-dataset:/app/dataset
+      - ml-models:/app/models
+      - shared-files:/app/files
+      # Или bind mounts для разработки :
+      # - ./ml-service/dataset:/app/dataset
+      # - ./ml-service/models:/app/models
+    networks:
+      - app-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  shared-files:
+  shared-dataset:
+
+  bff-data:
+  bff-static:
+
+  # ML-service volumes
+  ml-models:
